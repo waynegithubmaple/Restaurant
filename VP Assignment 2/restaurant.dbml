@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="restaurant" Class="restaurantDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\restaurant.mdf;Integrated Security=True" SettingsObjectName="VP_Assignment_2.My.MySettings" SettingsPropertyName="restaurantConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Seat" Member="Seats">
+    <Type Name="Seat">
+      <Column Name="TableNo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TableStatus" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Seat_OrderItem" Member="OrderItems" ThisKey="TableNo" OtherKey="tableNo" Type="OrderItem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Order]" Member="Orders">
+    <Type Name="Order">
+      <Column Name="OrderNo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="OrderDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="OrderStatus" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="Order_OrderItem" Member="OrderItems" ThisKey="OrderNo" OtherKey="OrderNo" Type="OrderItem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Menu" Member="Menus">
+    <Type Name="Menu">
+      <Column Name="ItemId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ItemName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ItemPrice" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemCategory" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Association Name="Menu_OrderItem" Member="OrderItems" ThisKey="ItemId" OtherKey="ItemId" Type="OrderItem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderItems" Member="OrderItems">
+    <Type Name="OrderItem">
+      <Column Name="OrderNo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ItemPrice" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tableNo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="entry" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Seat_OrderItem" Member="Seat" ThisKey="tableNo" OtherKey="TableNo" Type="Seat" IsForeignKey="true" />
+      <Association Name="Menu_OrderItem" Member="Menu" ThisKey="ItemId" OtherKey="ItemId" Type="Menu" IsForeignKey="true" />
+      <Association Name="Order_OrderItem" Member="Order" ThisKey="OrderNo" OtherKey="OrderNo" Type="Order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Promotion" Member="Promotions">
+    <Type Name="Promotion">
+      <Column Name="promoCode" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="discountType" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="active" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="discountAmount" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Foodlog" Member="Foodlogs">
+    <Type Name="Foodlog">
+      <Column Name="ID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ActivityType" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Day" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Month" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Year" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Time" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Staff2" Member="Staff2s">
+    <Type Name="Staff2">
+      <Column Name="Id" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IC" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Contact" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Position" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Reason" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reservation" Member="Reservations">
+    <Type Name="Reservation">
+      <Column Name="[Reservation ID]" Member="Reservation_ID" Type="System.String" DbType="VarChar(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[Customer Name]" Member="Customer_Name" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="[Reservation DateTime Start]" Member="Reservation_DateTime_Start" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="[Reservation DateTime End ]" Member="Reservation_DateTime_End_" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="[Number of People]" Member="Number_of_People" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Contact Number]" Member="Contact_Number" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="[Staff ID]" Member="Staff_ID" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="[Table No]" Member="Table_No" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
