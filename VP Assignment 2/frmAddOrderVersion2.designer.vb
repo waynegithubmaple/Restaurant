@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmAddOrderVersion2
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmAddOrderVersion2
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.cboCategory = New System.Windows.Forms.ComboBox()
         Me.lstItems = New System.Windows.Forms.ListBox()
@@ -32,7 +32,6 @@ Partial Class frmAddOrderVersion2
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.btnDeleteItem = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.txtQuantity = New System.Windows.Forms.TextBox()
         Me.lstViewOrderDetails = New System.Windows.Forms.ListView()
@@ -40,7 +39,6 @@ Partial Class frmAddOrderVersion2
         Me.colPrice = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colQuantity = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colTotal = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.btnUpdate = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
@@ -139,15 +137,6 @@ Partial Class frmAddOrderVersion2
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Order Details :"
         '
-        'btnDeleteItem
-        '
-        Me.btnDeleteItem.Location = New System.Drawing.Point(727, 100)
-        Me.btnDeleteItem.Name = "btnDeleteItem"
-        Me.btnDeleteItem.Size = New System.Drawing.Size(75, 23)
-        Me.btnDeleteItem.TabIndex = 13
-        Me.btnDeleteItem.Text = "&Delete Item"
-        Me.btnDeleteItem.UseVisualStyleBackColor = True
-        '
         'btnSave
         '
         Me.btnSave.Location = New System.Drawing.Point(438, 313)
@@ -195,15 +184,6 @@ Partial Class frmAddOrderVersion2
         '
         Me.colTotal.Text = "Total"
         '
-        'btnUpdate
-        '
-        Me.btnUpdate.Location = New System.Drawing.Point(726, 71)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(75, 23)
-        Me.btnUpdate.TabIndex = 12
-        Me.btnUpdate.Text = "&Update"
-        Me.btnUpdate.UseVisualStyleBackColor = True
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -222,11 +202,9 @@ Partial Class frmAddOrderVersion2
         Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(814, 348)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.btnUpdate)
         Me.Controls.Add(Me.lstViewOrderDetails)
         Me.Controls.Add(Me.txtQuantity)
         Me.Controls.Add(Me.btnSave)
-        Me.Controls.Add(Me.btnDeleteItem)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.btnCancel)
@@ -254,7 +232,6 @@ Partial Class frmAddOrderVersion2
     Friend WithEvents btnCancel As Button
     Friend WithEvents btnAdd As Button
     Friend WithEvents Label2 As Label
-    Friend WithEvents btnDeleteItem As Button
     Friend WithEvents btnSave As Button
     Friend WithEvents txtQuantity As TextBox
     Friend WithEvents lstViewOrderDetails As ListView
@@ -262,6 +239,5 @@ Partial Class frmAddOrderVersion2
     Friend WithEvents colPrice As ColumnHeader
     Friend WithEvents colQuantity As ColumnHeader
     Friend WithEvents colTotal As ColumnHeader
-    Friend WithEvents btnUpdate As Button
     Friend WithEvents Label4 As Label
 End Class

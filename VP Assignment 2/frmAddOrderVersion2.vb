@@ -195,53 +195,16 @@
 
             MessageBox.Show("Order Added Successfuly", "Information")
             Me.Close()
+            frmAvailableTables.Close()
             frmMainOrder.Show()
         End If
 
         ' MessageBox.Show(orderNo.ToString)
     End Sub
 
-    Private Sub btnDeleteItem_Click(sender As Object, e As EventArgs) Handles btnDeleteItem.Click
-
-        If lstViewOrderDetails.FocusedItem.Index = -1 Then
-            MessageBox.Show("Please select an item to delete", "Error")
-            lstViewOrderDetails.Select()
-        Else
-            lstViewOrderDetails.Items.RemoveAt(lstViewOrderDetails.FocusedItem.Index)
-        End If
-        currentItem -= 1
-        resetForm()
-        btnSave.Focus()
-    End Sub
 
 
-    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-        index = lstViewOrderDetails.FocusedItem.Index
 
-        If txtQuantity Is Nothing Then
-            MessageBox.Show("Please enter a value for quantity", "Error")
-        ElseIf Integer.TryParse(txtQuantity.Text, quantity) = False Then
-            MessageBox.Show("Enter a numeric value only", "ERROR")
-        ElseIf quantity <= 0 Then
-            MessageBox.Show("Enter a valid quantity", "ERROR")
-        Else
-            itemName = lblItem.Text
-            Dim s = (From o In db.Menus Where o.ItemName = itemName).FirstOrDefault
-            itemNo = s.ItemId
-            'itemName = lblItem.Text
-            itemPrice = Integer.Parse(lblItemPrice.Text)
-
-            lstViewOrderDetails.Items(index).Text = itemName
-            lstViewOrderDetails.Items(index).SubItems(1).Text = itemPrice.ToString
-            lstViewOrderDetails.Items(index).SubItems(2).Text = quantity.ToString
-            lstViewOrderDetails.Items(index).SubItems(3).Text = (quantity * itemPrice).ToString
-
-        End If
-
-        resetForm()
-            btnSave.Focus()
-
-    End Sub
 
     Private Sub resetForm()
         ' lblItemNo.Text = Nothing
