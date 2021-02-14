@@ -9,144 +9,7 @@ Public Class frmAddandEdit
 
     Private Sub frmAddandEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        'If frmFoodmanagement.charAddorEdit = "A" Then
-
-        '    btnAdd.Enabled = True
-        '    btnSubmit.Enabled = False
-        '    radAppetizer.Enabled = True
-        '    radBeverage.Enabled = True
-        '    radMaincourse.Enabled = True
-        '    radDrink.Enabled = True
-        '    radDessert.Enabled = True
-        '    Clearall()
-
-        'Else
-
-        '    btnSubmit.Enabled = True
-        '    btnAdd.Enabled = False
-        '    radAppetizer.Enabled = False
-        '    radBeverage.Enabled = False
-        '    radMaincourse.Enabled = False
-        '    radDrink.Enabled = False
-        '    radDessert.Enabled = False
-
-        '    Try
-
-        '        If (Openconnection() = True) Then
-
-        '            Dim strFoodID As String = ""
-        '            Dim strFoodName As String = ""
-        '            Dim charCategory As Char = Nothing
-        '            Dim decPrice As Decimal
-        '            Dim strAvailability As String = ""
-        '            Dim cmd As SqlCommand = con.CreateCommand()
-
-        '            strFoodID = frmFoodmanagement.strSelectedFoodID
-
-        '            cmd.CommandType = CommandType.Text
-        '            cmd.CommandText = "Select * from Menu Where ItemID = @FoodID"
-        '            Using da As New SqlDataAdapter(cmd)
-
-        '                cmd.Parameters.AddWithValue("@FoodID", strFoodID)
-        '                cmd.ExecuteNonQuery()
-        '                ds.Clear()
-        '                da.Fill(ds, "Menu")
-
-        '            End Using
-
-        '            Dim Reader = cmd.ExecuteReader
-        '            While Reader.Read()
-
-        '                strFoodName = Reader("ItemName").ToString()
-        '                decPrice = Convert.ToDecimal(Reader("ItemPrice"))
-        '                strAvailability = Reader("Status").ToString()
-        '                strImagelocation = Reader("Filepath").ToString()
-
-        '            End While
-
-        '            txtFoodName.Text = strFoodName
-
-        '            mskPrice.Text = decPrice.ToString()
-
-        '            If (strAvailability = "Available") Then
-
-        '                radAvailable.Checked = True
-
-        '            Else
-
-        '                radUnavailable.Checked = True
-
-        '            End If
-
-        '            charCategory = strFoodID.ElementAt(0)
-
-        '            Select Case (charCategory)
-        '                Case Convert.ToChar("A")
-        '                    radAppetizer.Checked = True
-        '                    Exit Select
-        '                Case Convert.ToChar("B")
-        '                    radBeverage.Checked = True
-        '                    Exit Select
-        '                Case Convert.ToChar("D")
-        '                    radDrink.Checked = True
-        '                    Exit Select
-        '                Case Convert.ToChar("M")
-        '                    radMaincourse.Checked = True
-        '                    Exit Select
-        '                Case Convert.ToChar("S")
-        '                    radDessert.Checked = True
-        '                    Exit Select
-        '            End Select
-
-        '            picBox.ImageLocation = strImagelocation
-
-        '            Closeconnection()
-
-        '        Else
-
-        '        End If
-
-        '    Catch ex As Exception
-
-        '        MessageBox.Show("Error reading database")
-        '        Closeconnection()
-
-        '    End Try
-
-        'End If
-
-
     End Sub
-
-    Private Function GetFoodCategory(strFoodID As String) As String
-
-        Dim charCategory As Char
-        Dim strFoodCategory As String
-        strFoodCategory = strFoodID
-
-        charCategory = strFoodCategory.ElementAt(0)
-
-        Select Case (charCategory)
-            Case Convert.ToChar("A")
-                strFoodCategory = "Appetizers"
-                Exit Select
-            Case Convert.ToChar("B")
-                strFoodCategory = "Beverages"
-                Exit Select
-            Case Convert.ToChar("D")
-                strFoodCategory = "Drinks"
-                Exit Select
-            Case Convert.ToChar("M")
-                strFoodCategory = "Main Meal"
-                Exit Select
-            Case Convert.ToChar("S")
-                strFoodCategory = "Desserts"
-                Exit Select
-        End Select
-
-        Return strFoodCategory
-
-    End Function
 
     Private Sub btnUpload_Click(sender As Object, e As EventArgs) Handles btnUpload.Click
 
@@ -176,32 +39,12 @@ Public Class frmAddandEdit
 
     Private Sub frmAddandEdit_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
 
-        'frmFoodmanagement.GetNewFoodID()
 
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
 
         Me.Close()
-
-    End Sub
-
-    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
-
-        'If (frmFoodmanagement.charAddorEdit = "A") Then
-
-        '    txtFoodName.Clear()
-        '    radMaincourse.Checked = True
-        '    mskPrice.Clear()
-        '    radAvailable.Checked = True
-
-        'Else
-
-        '    txtFoodName.Clear()
-        '    mskPrice.Clear()
-        '    radAvailable.Checked = True
-
-        'End If
 
     End Sub
 
@@ -224,97 +67,72 @@ Public Class frmAddandEdit
 
     End Sub
 
-    Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+    Private Function GetFoodCategory() As String
 
-        Try
+        Dim strFoodCategory As String = ""
 
-            If (txtFoodName.Text = "" Or mskPrice.Text = "") Then
+        If (radAppetizer.Checked = True) Then
 
-                MessageBox.Show("Please enter food name and food price", "Error Message", MessageBoxButtons.OK)
+            strFoodCategory = "Appetizers"
 
-            Else
+        ElseIf (radBeverage.Checked = True) Then
 
-                'If (Openconnection() = True) Then
+            strFoodCategory = "Beverage"
 
-                '    Dim strFoodID As String = ""
-                '    Dim cmd As SqlCommand = con.CreateCommand()
-                '    Dim strCategory As String = ""
-                '    Dim strPrice As String = ""
-                '    Dim strAvailability As String = ""
-                '    Dim strFilepath As String = ""
+        ElseIf (radDrink.Checked = True) Then
 
-                '    strFoodID = frmFoodmanagement.strSelectedFoodID
+            strFoodCategory = "Drinks"
 
-                '    If (radAvailable.Checked = True) Then
-                '        strAvailability = "Available"
-                '    Else
-                '        strAvailability = "Unavailable"
-                '    End If
+        ElseIf (radDessert.Checked = True) Then
 
-                '    ' strCategory = GetFoodCategory(strFoodID)
+            strFoodCategory = "Desserts"
 
-                '    cmd.CommandType = CommandType.Text
-                '    cmd.CommandText = "Update Menu Set ItemName = @FoodName, ItemPrice = @FoodPrice, Status = @Availability, Filepath = @Imagelocation Where ItemID = @FoodID"
-                '    Using da As New SqlDataAdapter(cmd)
+        Else
 
-                '        cmd.Parameters.AddWithValue("@FoodID", strFoodID)
-                '        cmd.Parameters.AddWithValue("@FoodName", txtFoodName.Text)
-                '        cmd.Parameters.AddWithValue("@FoodPrice", mskPrice.Text)
-                '        cmd.Parameters.AddWithValue("@Availability", strAvailability)
-                '        cmd.Parameters.AddWithValue("@Imagelocation", strImagelocation)
-                '        cmd.ExecuteNonQuery()
+            strFoodCategory = "Main Meal"
 
-                '    End Using
+        End If
 
-                '    Closeconnection()
+        Return strFoodCategory
 
-                '    MessageBox.Show("Updated Successfully", "Update Status")
+    End Function
 
-                'End If
 
-            End If
-
-        Catch ex As Exception
-
-            MessageBox.Show("Error reading & updating database")
-            Closeconnection()
-        Finally
-
-            'frmFoodmanagement.Keeplog("Edit", frmFoodmanagement.strSelectedFoodID)
-
-        End Try
-
-    End Sub
-
-    Friend Function GetFoodID() As String
+    Private Function GetNewFoodID(strFood As String) As String
 
         Dim strFoodID As String = ""
 
-        'If (radAppetizer.Checked = True) Then
+        Try
 
-        '    strFoodID = frmFoodmanagement.NewAppetizerFoodID
+            Dim intTotalFoodIDs As Integer = 0
+            Dim cmd As SqlCommand = con.CreateCommand()
 
-        'ElseIf (radBeverage.Checked = True) Then
+            cmd.CommandType = CommandType.Text
+            cmd.CommandText = "Select ItemId from Menu where ItemCategory = @FoodCategory"
+            cmd.Parameters.Clear()
+            cmd.Parameters.AddWithValue("@FoodCategory", strFood)
+            cmd.ExecuteNonQuery()
 
-        '    strFoodID = frmFoodmanagement.NewBeverageFoodID
+            Using da As New SqlDataAdapter(cmd)
 
-        'ElseIf (radDrink.Checked = True) Then
+                ds.Clear()
+                da.Fill(ds, "Total")
+                intTotalFoodIDs = ds.Tables("Total").Rows.Count()
 
-        '    strFoodID = frmFoodmanagement.NewDrinkFoodID
+            End Using
 
-        'ElseIf (radDessert.Checked = True) Then
+            strFoodID = strFood.Substring(0, 2) + ((intTotalFoodIDs + 1).ToString)
 
-        '    strFoodID = frmFoodmanagement.NewDessertFoodID
+        Catch ex As Exception
 
-        'Else
+            MessageBox.Show("Error retrieving Food ID")
 
-        '    strFoodID = frmFoodmanagement.NewMaincourseFoodID
-
-        'End If
+        End Try
 
         Return strFoodID
 
     End Function
+
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
 
@@ -329,14 +147,10 @@ Public Class frmAddandEdit
 
                     Dim strFoodID As String = ""
                     Dim cmd As SqlCommand = con.CreateCommand()
-                    Dim strCategory As String = ""
+                    Dim strFoodCategory As String = GetFoodCategory()
                     Dim strPrice As String = ""
                     Dim strAvailability As String = ""
                     Dim strFilepath As String = ""
-
-                    strFoodID = GetFoodID()
-
-                    strCategory = GetFoodCategory(strFoodID)
 
                     If (radAvailable.Checked = True) Then
                         strAvailability = "Available"
@@ -346,19 +160,15 @@ Public Class frmAddandEdit
 
                     cmd.CommandType = CommandType.Text
                     cmd.CommandText = "Insert into Menu (ItemId, ItemName, ItemPrice, ItemCategory, Status, Filepath) values (@FoodID,@FoodName,@FoodPrice,@FoodCategory,@Status,@Filepath)"
-                    Using da As New SqlDataAdapter(cmd)
+                    cmd.Parameters.Clear()
+                    cmd.Parameters.AddWithValue("@FoodID", GetNewFoodID(strFoodCategory))
+                    cmd.Parameters.AddWithValue("@FoodName", txtFoodName.Text)
+                    cmd.Parameters.AddWithValue("@FoodPrice", mskPrice.Text)
+                    cmd.Parameters.AddWithValue("@FoodCategory", strFoodCategory)
+                    cmd.Parameters.AddWithValue("@Status", strAvailability)
+                    cmd.Parameters.AddWithValue("@Filepath", strImagelocation)
 
-                        cmd.Parameters.AddWithValue("@FoodID", strFoodID)
-                        cmd.Parameters.AddWithValue("@FoodName", txtFoodName.Text)
-                        cmd.Parameters.AddWithValue("@FoodPrice", mskPrice.Text)
-                        cmd.Parameters.AddWithValue("@FoodCategory", strCategory)
-                        cmd.Parameters.AddWithValue("@Status", strAvailability)
-                        cmd.Parameters.AddWithValue("@Filepath", strImagelocation)
-                        cmd.ExecuteNonQuery()
-
-                    End Using
-
-                    Closeconnection()
+                    cmd.ExecuteNonQuery()
 
                     MessageBox.Show("Added successfully", "Insertion Status")
 
@@ -366,13 +176,11 @@ Public Class frmAddandEdit
             End If
         Catch ex As Exception
 
-            MessageBox.Show("Error adding into database")
+            MessageBox.Show("Error adding into database1")
 
         Finally
 
-            'frmFoodmanagement.Keeplog("Insert", txtFoodName.Text)
-            'frmFoodmanagement.GetNewFoodID()
-            'Clearall()
+            Closeconnection()
 
         End Try
 
@@ -382,21 +190,21 @@ Public Class frmAddandEdit
 
     Private Sub txtFoodName_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtFoodName.Validating
 
-        If (String.IsNullOrEmpty(txtFoodName.Text)) Then
+        'If (String.IsNullOrEmpty(txtFoodName.Text)) Then
 
-            e.Cancel = True
+        '    e.Cancel = True
 
-            txtFoodName.Select()
+        '    txtFoodName.Select()
 
-            err.SetError(txtFoodName, "Please enter food name!")
+        '    err.SetError(txtFoodName, "Please enter food name!")
 
-        Else
+        'Else
 
-            e.Cancel = False
+        '    e.Cancel = False
 
-            err.SetError(txtFoodName, "")
+        '    err.SetError(txtFoodName, "")
 
-        End If
+        'End If
 
     End Sub
 End Class
