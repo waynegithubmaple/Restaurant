@@ -244,10 +244,11 @@ Public Class FrmLogin
 
     Private Sub radNo_CheckedChanged(sender As Object, e As EventArgs) Handles radNo.CheckedChanged
         'IDShow()
-        IfRadNo()
+        'IfRadNo()
 
-        txtLoginID.Enabled = True
-        txtLoginID.Focus()
+        'txtLoginID.Enabled = True
+        'txtLoginID.Focus()
+        Application.Restart()
     End Sub
 
 

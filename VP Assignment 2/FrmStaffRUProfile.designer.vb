@@ -25,7 +25,6 @@ Partial Class FrmStaffRUProfile
         Me.txtContact = New System.Windows.Forms.MaskedTextBox()
         Me.lblGender = New System.Windows.Forms.Label()
         Me.lblIC = New System.Windows.Forms.Label()
-        Me.btnBack = New System.Windows.Forms.Button()
         Me.btnUpdate = New System.Windows.Forms.Button()
         Me.lblGender1 = New System.Windows.Forms.Label()
         Me.lblAddress = New System.Windows.Forms.Label()
@@ -39,6 +38,7 @@ Partial Class FrmStaffRUProfile
         Me.lblId = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.RichTextBoxAddress = New System.Windows.Forms.RichTextBox()
+        Me.btnLogout = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'txtContact
@@ -67,16 +67,6 @@ Partial Class FrmStaffRUProfile
         Me.lblIC.Name = "lblIC"
         Me.lblIC.Size = New System.Drawing.Size(166, 23)
         Me.lblIC.TabIndex = 68
-        '
-        'btnBack
-        '
-        Me.btnBack.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnBack.Location = New System.Drawing.Point(365, 308)
-        Me.btnBack.Name = "btnBack"
-        Me.btnBack.Size = New System.Drawing.Size(83, 34)
-        Me.btnBack.TabIndex = 67
-        Me.btnBack.Text = "&Back"
-        Me.btnBack.UseVisualStyleBackColor = True
         '
         'btnUpdate
         '
@@ -206,15 +196,25 @@ Partial Class FrmStaffRUProfile
         Me.RichTextBoxAddress.TabIndex = 58
         Me.RichTextBoxAddress.Text = ""
         '
+        'btnLogout
+        '
+        Me.btnLogout.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnLogout.Location = New System.Drawing.Point(349, 308)
+        Me.btnLogout.Name = "btnLogout"
+        Me.btnLogout.Size = New System.Drawing.Size(113, 32)
+        Me.btnLogout.TabIndex = 74
+        Me.btnLogout.Text = "&Logout"
+        Me.btnLogout.UseVisualStyleBackColor = True
+        '
         'FrmStaffRUProfile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(584, 369)
+        Me.Controls.Add(Me.btnLogout)
         Me.Controls.Add(Me.txtContact)
         Me.Controls.Add(Me.lblGender)
         Me.Controls.Add(Me.lblIC)
-        Me.Controls.Add(Me.btnBack)
         Me.Controls.Add(Me.btnUpdate)
         Me.Controls.Add(Me.lblGender1)
         Me.Controls.Add(Me.RichTextBoxAddress)
@@ -238,7 +238,6 @@ Partial Class FrmStaffRUProfile
     Friend WithEvents txtContact As MaskedTextBox
     Friend WithEvents lblGender As Label
     Friend WithEvents lblIC As Label
-    Friend WithEvents btnBack As Button
     Friend WithEvents btnUpdate As Button
     Friend WithEvents lblGender1 As Label
     Friend WithEvents lblAddress As Label
@@ -252,4 +251,5 @@ Partial Class FrmStaffRUProfile
     Friend WithEvents lblId As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents RichTextBoxAddress As RichTextBox
+    Friend WithEvents btnLogout As Button
 End Class

@@ -14,7 +14,7 @@ Public Class FrmStaffRUProfile
 
 
 
-    Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
+    Private Sub btnBack_Click(sender As Object, e As EventArgs)
 
         FrmStaffRU.Show()
         Me.Hide()
@@ -35,7 +35,7 @@ Public Class FrmStaffRUProfile
         Dim id111 As String = txtID.Text
 
 
-        If OpenConnection() = True Then
+        If Openconnection() = True Then
             sql = "Select * From Staff2 Where Id ='" & txtID.Text & "'"
             da = New SqlDataAdapter(sql, con)
             ds.Clear()
@@ -57,7 +57,7 @@ Public Class FrmStaffRUProfile
 
             End If
 
-            CloseConnection()
+            Closeconnection()
 
         Else
             MessageBox.Show("Error in connecting to database server", "Error", MessageBoxButtons.OK)
@@ -82,7 +82,7 @@ Public Class FrmStaffRUProfile
         Dim MySqlCommand As New SqlCommand
         Dim sql As String
 
-        If OpenConnection() = True Then
+        If Openconnection() = True Then
 
             sql = "Update Staff2 set Name=@name, Ic=@ic, Gender=@gender, Contact=@contact, Email=@email, Address=@address Where Id=@id"
             MySqlCommand = New SqlCommand(sql, con)
@@ -99,7 +99,7 @@ Public Class FrmStaffRUProfile
 
         End If
 
-        CloseConnection()
+        Closeconnection()
 
 
 
@@ -121,5 +121,9 @@ Public Class FrmStaffRUProfile
         txtEmail.Enabled = True
         RichTextBoxAddress.Enabled = True
         btnUpdate.Text = "&Update"
+    End Sub
+
+    Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
+        Application.Restart()
     End Sub
 End Class
