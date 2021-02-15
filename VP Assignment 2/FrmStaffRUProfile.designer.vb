@@ -229,6 +229,7 @@ Partial Class FrmStaffRUProfile
         Me.Controls.Add(Me.lblId)
         Me.Controls.Add(Me.Label1)
         Me.Name = "FrmStaffRUProfile"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FrmStaffRUProfile"
         Me.ResumeLayout(False)
         Me.PerformLayout()

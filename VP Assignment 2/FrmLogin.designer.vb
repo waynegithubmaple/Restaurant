@@ -181,6 +181,7 @@ Partial Class FrmLogin
         Me.Controls.Add(Me.lblStaffID)
         Me.Controls.Add(Me.Label1)
         Me.Name = "FrmLogin"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login"
         Me.GroupBoxCorrect.ResumeLayout(False)
         Me.GroupBoxCorrect.PerformLayout()

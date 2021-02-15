@@ -78,6 +78,7 @@ Partial Class FrmStaffRU
         Me.Controls.Add(Me.btnLogout)
         Me.Controls.Add(Me.Label1)
         Me.Name = "FrmStaffRU"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FrmStaffRU"
         Me.ResumeLayout(False)
         Me.PerformLayout()
