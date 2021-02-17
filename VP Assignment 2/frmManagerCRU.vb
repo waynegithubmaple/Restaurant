@@ -8,7 +8,7 @@
     End Sub
 
     Private Sub btnReservation_Click(sender As Object, e As EventArgs) Handles btnReservation.Click
-        'Form2.Show()
+        Form2.Show()
     End Sub
 
     Private Sub btnPayment_Click(sender As Object, e As EventArgs)
