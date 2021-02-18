@@ -7,7 +7,7 @@
         lblResId.Text = getnewid()
         dtpEndTime.MaxDate = DateTime.Parse("11:59 pm")
         dtpResTime.MinDate = DateTime.Parse("10:00 am")
-        dtpEndTime.Value = dtpResTime.Value.AddHours(0)
+        dtpEndTime.Value = dtpResTime.Value.AddHours(2)
 
         If dtpResTime.Value.ToShortDateString > dtpEndTime.MaxDate.ToShortTimeString Then
             dtpResTime.Enabled = False
@@ -28,7 +28,7 @@
             ' Dim datee As Date = dtpResDate.Value
             Dim str_begin_time As String = "#" & dtpResDate.Value.ToString("dd/MM/yyyy") & " " & dtpResTime.Value.ToString("hh:mm:ss tt") & "#"
             Dim str_end_time As String = "#" & dtpResDate.Value.ToString("dd/MM/yyyy") & " " & dtpEndTime.Value.ToString("hh:mm:ss tt") & "#"
-            dtpEndTime.Value = dtpResTime.Value.AddHours(2)
+            dtpEndTime.Value = dtpResTime.Value.AddHours(0)
             ' Dim start As DateTime = Date.Parse(str_begin_time)
             ' Dim end_ As DateTime = Date.Parse(str_end_time)
             ' Dim db As New restaurantDataContext()
