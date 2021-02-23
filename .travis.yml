@@ -1,7 +1,6 @@
 language: c
-sudo: required
 os: [
-    "windows"
+    "linux"
   ]
 dist: "xenial"
 sudo: true
