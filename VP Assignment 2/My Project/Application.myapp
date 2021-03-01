@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <MyApplicationData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <MySubMain>true</MySubMain>
-<<<<<<< HEAD
-  <MainForm>frmMainOrder</MainForm>
-=======
   <MainForm>frmFoodmanagement</MainForm>
->>>>>>> c90ad0d704fb99356236fc5ae963814fcdfbe446
   <SingleInstance>false</SingleInstance>
   <ShutdownMode>0</ShutdownMode>
   <EnableVisualStyles>true</EnableVisualStyles>
