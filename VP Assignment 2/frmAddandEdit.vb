@@ -191,7 +191,7 @@ Public Class frmAddandEdit
 
             If (intErrorCount > 0) Then
 
-                MessageBox.Show("You have at least one of these errors:" + vbCrLf + strErrorMessage, "Error Message", MessageBoxButtons.OK)
+                MessageBox.Show("You have the following errors: " + vbCrLf + strErrorMessage, "Error Message", MessageBoxButtons.OK)
 
             Else
 
