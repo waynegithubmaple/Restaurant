@@ -19,6 +19,7 @@
 
 
     Private Sub cboTableNo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboTableNo.SelectedIndexChanged
+        total = 0
         lstViewOrderDetails.Items.Clear()
         Dim currentItem As Integer = 0
         tableNo = Integer.Parse(cboTableNo.SelectedItem.ToString)

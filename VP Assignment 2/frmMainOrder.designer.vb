@@ -24,6 +24,8 @@ Partial Class frmMainOrder
     Private Sub InitializeComponent()
         Me.btnAddOrder = New System.Windows.Forms.Button()
         Me.btnExit = New System.Windows.Forms.Button()
+        Me.btnViewOrder = New System.Windows.Forms.Button()
+        Me.btnUpdateOrder = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnAddOrder
@@ -45,12 +47,32 @@ Partial Class frmMainOrder
         Me.btnExit.Text = "E&xit"
         Me.btnExit.UseVisualStyleBackColor = True
         '
+        'btnViewOrder
+        '
+        Me.btnViewOrder.Location = New System.Drawing.Point(74, 97)
+        Me.btnViewOrder.Name = "btnViewOrder"
+        Me.btnViewOrder.Size = New System.Drawing.Size(92, 29)
+        Me.btnViewOrder.TabIndex = 6
+        Me.btnViewOrder.Text = "&View Order"
+        Me.btnViewOrder.UseVisualStyleBackColor = True
+        '
+        'btnUpdateOrder
+        '
+        Me.btnUpdateOrder.Location = New System.Drawing.Point(74, 132)
+        Me.btnUpdateOrder.Name = "btnUpdateOrder"
+        Me.btnUpdateOrder.Size = New System.Drawing.Size(92, 29)
+        Me.btnUpdateOrder.TabIndex = 7
+        Me.btnUpdateOrder.Text = "&Update Order"
+        Me.btnUpdateOrder.UseVisualStyleBackColor = True
+        '
         'frmMainOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnExit
         Me.ClientSize = New System.Drawing.Size(253, 300)
+        Me.Controls.Add(Me.btnUpdateOrder)
+        Me.Controls.Add(Me.btnViewOrder)
         Me.Controls.Add(Me.btnExit)
         Me.Controls.Add(Me.btnAddOrder)
         Me.Name = "frmMainOrder"
@@ -61,4 +83,6 @@ Partial Class frmMainOrder
 
     Friend WithEvents btnAddOrder As Button
     Friend WithEvents btnExit As Button
+    Friend WithEvents btnViewOrder As Button
+    Friend WithEvents btnUpdateOrder As Button
 End Class
