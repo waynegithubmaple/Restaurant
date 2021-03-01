@@ -13,9 +13,7 @@
         lstItems.Items.Clear()
         lblTableNo.Text = frmMainOrder.tableNo
         Dim o As New restaurantDataContext
-        'multitable query?
-        ' Dim order = (From q In o.OrderItems Join s In o.Orders On  )
-        ' the orderNo is stored in the current 
+
         Dim order = (From q In o.OrderItems, a In o.Orders Where q.OrderNo = a.OrderNo And q.tableNo = Integer.Parse(frmMainOrder.tableNo) And a.OrderStatus = "Unpaid").ToArray
         orderNo = order(0).q.OrderNo
         'MessageBox.Show(orderNo.ToString)
