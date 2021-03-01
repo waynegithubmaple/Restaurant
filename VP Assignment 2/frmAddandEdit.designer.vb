@@ -32,7 +32,6 @@ Partial Class frmAddandEdit
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnAdd = New System.Windows.Forms.Button()
-        Me.btnSubmit = New System.Windows.Forms.Button()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.txtFoodName = New System.Windows.Forms.TextBox()
         Me.radMaincourse = New System.Windows.Forms.RadioButton()
@@ -40,12 +39,12 @@ Partial Class frmAddandEdit
         Me.radBeverage = New System.Windows.Forms.RadioButton()
         Me.radDrink = New System.Windows.Forms.RadioButton()
         Me.grpEditbox = New System.Windows.Forms.GroupBox()
+        Me.mskPrice = New System.Windows.Forms.MaskedTextBox()
         Me.radDessert = New System.Windows.Forms.RadioButton()
         Me.radUnavailable = New System.Windows.Forms.RadioButton()
         Me.radAvailable = New System.Windows.Forms.RadioButton()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.btnClearpic = New System.Windows.Forms.Button()
-        Me.mskPrice = New System.Windows.Forms.MaskedTextBox()
         Me.err = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.picBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -117,12 +116,11 @@ Partial Class frmAddandEdit
         '
         Me.GroupBox2.Controls.Add(Me.btnCancel)
         Me.GroupBox2.Controls.Add(Me.btnAdd)
-        Me.GroupBox2.Controls.Add(Me.btnSubmit)
         Me.GroupBox2.Controls.Add(Me.btnClear)
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(504, 335)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(408, 169)
+        Me.GroupBox2.Size = New System.Drawing.Size(462, 99)
         Me.GroupBox2.TabIndex = 9
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Controls"
@@ -131,37 +129,27 @@ Partial Class frmAddandEdit
         '
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCancel.Location = New System.Drawing.Point(238, 105)
+        Me.btnCancel.Location = New System.Drawing.Point(311, 22)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(133, 58)
         Me.btnCancel.TabIndex = 10
-        Me.btnCancel.Text = "&Cancel"
+        Me.btnCancel.Text = "&Exit"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'btnAdd
         '
         Me.btnAdd.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAdd.Location = New System.Drawing.Point(43, 105)
+        Me.btnAdd.Location = New System.Drawing.Point(6, 22)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(133, 58)
         Me.btnAdd.TabIndex = 9
         Me.btnAdd.Text = "&Add item"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
-        'btnSubmit
-        '
-        Me.btnSubmit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSubmit.Location = New System.Drawing.Point(238, 22)
-        Me.btnSubmit.Name = "btnSubmit"
-        Me.btnSubmit.Size = New System.Drawing.Size(133, 58)
-        Me.btnSubmit.TabIndex = 8
-        Me.btnSubmit.Text = "&Submit "
-        Me.btnSubmit.UseVisualStyleBackColor = True
-        '
         'btnClear
         '
         Me.btnClear.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClear.Location = New System.Drawing.Point(43, 22)
+        Me.btnClear.Location = New System.Drawing.Point(160, 22)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(133, 58)
         Me.btnClear.TabIndex = 7
@@ -243,6 +231,15 @@ Partial Class frmAddandEdit
         Me.grpEditbox.TabStop = False
         Me.grpEditbox.Text = "Details"
         '
+        'mskPrice
+        '
+        Me.mskPrice.Location = New System.Drawing.Point(124, 198)
+        Me.mskPrice.Mask = "000"
+        Me.mskPrice.Name = "mskPrice"
+        Me.mskPrice.Size = New System.Drawing.Size(77, 23)
+        Me.mskPrice.TabIndex = 19
+        Me.mskPrice.ValidatingType = GetType(Integer)
+        '
         'radDessert
         '
         Me.radDessert.AutoSize = True
@@ -301,15 +298,6 @@ Partial Class frmAddandEdit
         Me.btnClearpic.Text = "&Clear Image"
         Me.btnClearpic.UseVisualStyleBackColor = True
         '
-        'mskPrice
-        '
-        Me.mskPrice.Location = New System.Drawing.Point(124, 198)
-        Me.mskPrice.Mask = "000"
-        Me.mskPrice.Name = "mskPrice"
-        Me.mskPrice.Size = New System.Drawing.Size(77, 23)
-        Me.mskPrice.TabIndex = 19
-        Me.mskPrice.ValidatingType = GetType(Integer)
-        '
         'err
         '
         Me.err.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
@@ -320,7 +308,7 @@ Partial Class frmAddandEdit
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnCancel
-        Me.ClientSize = New System.Drawing.Size(936, 516)
+        Me.ClientSize = New System.Drawing.Size(978, 516)
         Me.Controls.Add(Me.btnClearpic)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.grpEditbox)
@@ -349,7 +337,6 @@ Partial Class frmAddandEdit
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents btnCancel As Button
     Friend WithEvents btnAdd As Button
-    Friend WithEvents btnSubmit As Button
     Friend WithEvents btnClear As Button
     Friend WithEvents txtFoodName As TextBox
     Friend WithEvents radMaincourse As RadioButton
