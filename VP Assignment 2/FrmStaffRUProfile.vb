@@ -1,4 +1,4 @@
-﻿
+﻿Imports System.Text.RegularExpressions
 Imports System.Data.SqlClient
 Public Class FrmStaffRUProfile
 
@@ -82,13 +82,16 @@ Public Class FrmStaffRUProfile
 
         Dim MySqlCommand As New SqlCommand
         Dim sql As String
-        'MessageBox.Show("Pls Select a Table", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Dim format As String
+        format = "^([0-9a-zA-z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$"
         If txtName.Text = String.Empty Then
             MessageBox.Show("Name field cannot be empty. Please fill in your name.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
         ElseIf txtContact.MaskCompleted = False Then
             MessageBox.Show("Contact field cannot be empty. Please fill in your contact number.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
         ElseIf txtEmail.Text = String.Empty Then
             MessageBox.Show("Email field cannot be empty. Please fill in your Email address.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        ElseIf Regex.IsMatch(txtEmail.Text, format) = False Then
+            MessageBox.Show("Format of the email is incorrect. Please fill in your email again.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
         ElseIf RichTextBoxAddress.Text = String.Empty Then
             MessageBox.Show("Address field cannot be empty. Please fill in your address.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
         ElseIf Openconnection() = True Then
