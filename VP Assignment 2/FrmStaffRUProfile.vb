@@ -91,7 +91,7 @@ Public Class FrmStaffRUProfile
         ElseIf Regex.IsMatch(txtName.Text, formatName) = False Then
             MessageBox.Show("Format of the name is incorrect. The name should not contain any number or symbol. Please fill in your name again.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
         ElseIf txtContact.MaskCompleted = False Then
-            MessageBox.Show("Contact field cannot be empty. Please fill in your contact number.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Format of contact number is incorrect / Contact field cannot be empty. Please fill in your contact number.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
         ElseIf txtEmail.Text = String.Empty Then
             MessageBox.Show("Email field cannot be empty. Please fill in your Email address.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
         ElseIf Regex.IsMatch(txtEmail.Text, formatEmail) = False Then
