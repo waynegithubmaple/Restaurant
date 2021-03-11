@@ -25,7 +25,7 @@ Partial Class FrmStaffRU
         Me.btnLogout = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lblName = New System.Windows.Forms.Label()
-        Me.btnReservation = New System.Windows.Forms.Button()
+        Me.btnProfile = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnLogout
@@ -58,22 +58,22 @@ Partial Class FrmStaffRU
         Me.lblName.TabIndex = 11
         Me.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'btnReservation
+        'btnProfile
         '
-        Me.btnReservation.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnReservation.Location = New System.Drawing.Point(89, 173)
-        Me.btnReservation.Name = "btnReservation"
-        Me.btnReservation.Size = New System.Drawing.Size(121, 32)
-        Me.btnReservation.TabIndex = 12
-        Me.btnReservation.Text = "&Reservation"
-        Me.btnReservation.UseVisualStyleBackColor = True
+        Me.btnProfile.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnProfile.Location = New System.Drawing.Point(89, 173)
+        Me.btnProfile.Name = "btnProfile"
+        Me.btnProfile.Size = New System.Drawing.Size(121, 32)
+        Me.btnProfile.TabIndex = 12
+        Me.btnProfile.Text = "&Profile"
+        Me.btnProfile.UseVisualStyleBackColor = True
         '
         'FrmStaffRU
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(299, 378)
-        Me.Controls.Add(Me.btnReservation)
+        Me.Controls.Add(Me.btnProfile)
         Me.Controls.Add(Me.lblName)
         Me.Controls.Add(Me.btnLogout)
         Me.Controls.Add(Me.Label1)
@@ -88,5 +88,5 @@ Partial Class FrmStaffRU
     Friend WithEvents btnLogout As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents lblName As Label
-    Friend WithEvents btnReservation As Button
+    Friend WithEvents btnProfile As Button
 End Class
