@@ -85,7 +85,7 @@ Public Class FrmStaffRUProfile
         'MessageBox.Show("Pls Select a Table", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
         If txtName.Text = String.Empty Then
             MessageBox.Show("Name field cannot be empty. Please fill in your name.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        ElseIf txtContact Is Nothing Then
+        ElseIf txtContact.MaskCompleted = False Then
             MessageBox.Show("Contact field cannot be empty. Please fill in your contact number.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
         ElseIf txtEmail.Text = String.Empty Then
             MessageBox.Show("Email field cannot be empty. Please fill in your Email address.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
