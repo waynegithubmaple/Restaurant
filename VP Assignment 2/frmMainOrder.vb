@@ -13,6 +13,10 @@
         frmUnavailableTables.Show()
 
     End Sub
+    Private Sub btnDeleteOrder_Click(sender As Object, e As EventArgs) Handles btnDeleteOrder.Click
+        selectedChoice = "Delete"
+        frmDeleteOrder.Show()
+    End Sub
 
     Private Sub btnViewOrders_Click(sender As Object, e As EventArgs) Handles btnViewOrder.Click
         Dim db As New restaurantDataContext

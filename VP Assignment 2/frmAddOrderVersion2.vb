@@ -168,8 +168,14 @@
                 Dim d As New restaurantDataContext
                 Dim find = (From o In d.Menus
                             Where o.ItemName = lstViewOrderDetails.Items(j).Text).FirstOrDefault()
-                Dim z = (From t In d.OrderItems.AsEnumerable() Select t.entry).Max()
-                order.entry = z + 1
+                Try
+                    Dim z = (From t In d.OrderItems.AsEnumerable() Select t.entry).Max()
+                    order.entry = z + 1
+                Catch
+                    order.entry = 1
+                End Try
+
+
                 order.ItemId = find.ItemId
                 order.ItemName = find.ItemName
                 order.ItemPrice = find.ItemPrice

@@ -26,6 +26,7 @@ Partial Class frmMainOrder
         Me.btnExit = New System.Windows.Forms.Button()
         Me.btnViewOrder = New System.Windows.Forms.Button()
         Me.btnUpdateOrder = New System.Windows.Forms.Button()
+        Me.btnDeleteOrder = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnAddOrder
@@ -65,12 +66,22 @@ Partial Class frmMainOrder
         Me.btnUpdateOrder.Text = "&Update Order"
         Me.btnUpdateOrder.UseVisualStyleBackColor = True
         '
+        'btnDeleteOrder
+        '
+        Me.btnDeleteOrder.Location = New System.Drawing.Point(74, 167)
+        Me.btnDeleteOrder.Name = "btnDeleteOrder"
+        Me.btnDeleteOrder.Size = New System.Drawing.Size(92, 29)
+        Me.btnDeleteOrder.TabIndex = 8
+        Me.btnDeleteOrder.Text = "&Delete Order"
+        Me.btnDeleteOrder.UseVisualStyleBackColor = True
+        '
         'frmMainOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnExit
         Me.ClientSize = New System.Drawing.Size(253, 300)
+        Me.Controls.Add(Me.btnDeleteOrder)
         Me.Controls.Add(Me.btnUpdateOrder)
         Me.Controls.Add(Me.btnViewOrder)
         Me.Controls.Add(Me.btnExit)
@@ -85,4 +96,5 @@ Partial Class frmMainOrder
     Friend WithEvents btnExit As Button
     Friend WithEvents btnViewOrder As Button
     Friend WithEvents btnUpdateOrder As Button
+    Friend WithEvents btnDeleteOrder As Button
 End Class
