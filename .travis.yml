@@ -1,4 +1,4 @@
 {
-  "language": "Visual basic"
-  "sudo": true
+  "language": "Visual basic",
+  "sudo": required
 }
