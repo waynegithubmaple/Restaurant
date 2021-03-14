@@ -159,7 +159,9 @@ Public Class frmPayment
                     txtPayment.Text = ""
                     txtPayment.Focus()
                 ElseIf (dblAmount < dblTotalPrice) Then
-                    MessageBox.Show("The value entered is insufficient")
+                    Dim dblLackedAmount As Double = dblTotalPrice - dblAmount
+                    MessageBox.Show("The value entered is insufficient" + vbCrLf +
+                                    "You will need to add another: RM " + dblLackedAmount.ToString)
                     txtPayment.Text = ""
                     txtPayment.Focus()
                 Else
@@ -178,7 +180,7 @@ Public Class frmPayment
                             Dim dblChange As Double = dblAmount - dblTotalPrice
 
                             MessageBox.Show("Paid Successfully" + vbCrLf + "Balance to customer: RM " +
-                                            dblChange.ToString(), "Update Status")
+                                            dblChange.ToString(), "Payment Status")
 
                         End If
                     Catch ex As Exception
@@ -215,7 +217,7 @@ Public Class frmPayment
         End If
 
         If (intErrorCount > 0) Then
-            MessageBox.Show(strErrorMsg)
+            MessageBox.Show(strErrorMsg, "Error Message")
         End If
 
         Return intErrorCount
