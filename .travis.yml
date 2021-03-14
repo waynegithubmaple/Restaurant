@@ -1,4 +1,4 @@
 {
   language: csharp
-  mono:
+  solution: VP Assignment 2.sln
 }
