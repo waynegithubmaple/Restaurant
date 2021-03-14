@@ -1,4 +1,8 @@
 {
-  "language": "Visual basic",
-  "sudo": required
+  "language": "visual basic",
+  "os": [
+    "linux"
+  ],
+  "dist": "xenial",
+  "sudo": true
 }
