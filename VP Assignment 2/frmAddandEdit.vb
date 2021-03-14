@@ -282,4 +282,63 @@ Public Class frmAddandEdit
         Clearall()
 
     End Sub
+
+    'Try
+
+    'If (txtFoodName.Text = "" Or mskPrice.Text = "") Then
+
+    '            MessageBox.Show("Please enter food name and food price", "Error Message", MessageBoxButtons.OK)
+
+    '        Else
+
+    'If (Openconnection() = True) Then
+
+    'Dim strFoodID As String = ""
+    'Dim cmd As SqlCommand = con.CreateCommand()
+    'Dim strCategory As String = ""
+    'Dim strPrice As String = ""
+    'Dim strAvailability As String = ""
+    'Dim strFilepath As String = ""
+
+    '                strFoodID = frmFoodmanagement.strSelectedFoodID
+
+    '                If (radAvailable.Checked = True) Then
+    '                    strAvailability = "Available"
+    '                Else
+    '                    strAvailability = "Unavailable"
+    '                End If
+
+    '                ' strCategory = GetFoodCategory(strFoodID)
+
+    '                cmd.CommandType = CommandType.Text
+    '                cmd.CommandText = "Update Menu Set ItemName = @FoodName, ItemPrice = @FoodPrice, Status = @Availability, Filepath = @Imagelocation Where ItemID = @FoodID"
+    '                Using da As New SqlDataAdapter(cmd)
+
+    '                    cmd.Parameters.AddWithValue("@FoodID", strFoodID)
+    '                    cmd.Parameters.AddWithValue("@FoodName", txtFoodName.Text)
+    '                    cmd.Parameters.AddWithValue("@FoodPrice", mskPrice.Text)
+    '                    cmd.Parameters.AddWithValue("@Availability", strAvailability)
+    '                    cmd.Parameters.AddWithValue("@Imagelocation", strImagelocation)
+    '                    cmd.ExecuteNonQuery()
+
+    '                End Using
+
+    '                Closeconnection()
+
+    '                MessageBox.Show("Updated Successfully", "Update Status")
+
+    '            End If
+
+    'End If
+
+    'Catch ex As Exception
+
+    '        MessageBox.Show("Error reading & updating database")
+    '        Closeconnection()
+    '    Finally
+
+    '        frmFoodmanagement.Keeplog("Edit", frmFoodmanagement.strSelectedFoodID)
+
+    '    End Try
+
 End Class
