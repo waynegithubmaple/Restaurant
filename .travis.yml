@@ -1,8 +1,4 @@
 {
-  "language": "Visual Basic",
-  "os": [
-    "linux"
-  ],
-  "dist": "xenial",
-  "sudo": true
+ language: csharp
+ solution: solution-name.sln
 }
