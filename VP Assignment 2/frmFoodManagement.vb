@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
 Imports System.Text
 Public Class frmFoodmanagement
 
@@ -9,6 +10,7 @@ Public Class frmFoodmanagement
     Private strStoresearch As String
     Private strStoresearch2 As String
     Private blnSearchmode As Boolean = False
+    Private strImageLocation As String = ""
     Friend strSelectedFoodID As String
     Friend NewMaincourseFoodID, NewAppetizerFoodID, NewBeverageFoodID, NewDessertFoodID, NewDrinkFoodID As String
     Friend charAddorEdit As Char
@@ -284,19 +286,24 @@ Public Class frmFoodmanagement
 
                 Closeconnection()
 
+                Dim strPicPath As String = System.IO.Path.GetDirectoryName(Application.ExecutablePath).Replace("bin\Debug", "\Pictures\Available.png")
+
                 lblFoodname.Text = strFoodName
                 lblCategory.Text = strFoodCategory
                 lblPrice.Text = decPrice.ToString()
                 If (strAvailability = "Available") Then
 
-                    picAvailability.ImageLocation = "C:\Users\Blueberry\Desktop\VP Assignment 2\VP Assignment 2\VP Assignment 2\Pictures\Available.png"
+                    picAvailability.ImageLocation = strPicPath
 
                 Else
 
-                    picAvailability.ImageLocation = "C:\Users\Blueberry\Desktop\VP Assignment 2\VP Assignment 2\VP Assignment 2\Pictures\Unavailable.png"
+                    picAvailability.ImageLocation = strPicPath.Replace("Available.png", "Unavailable.png")
 
                 End If
-                picBox.ImageLocation = strFilepath
+
+                strImageLocation = System.IO.Path.GetDirectoryName(Application.ExecutablePath).Replace("bin\Debug", strFilepath)
+
+                picBox.ImageLocation = strImageLocation
 
             Else
 
@@ -375,64 +382,65 @@ Public Class frmFoodmanagement
         Dim intIndex As Integer
         Dim strFoodstring As String
         Dim strFoodID As String = ""
-        Dim charFoodID As Char
         strStoresearch2 = strStoresearch
 
         Try
             intIndex = lstFoodname.SelectedIndex
-            strFoodstring = lstFoodname.Items(intIndex).ToString
 
-            For Start = 0 To 3
+            If (intIndex = -1) Then
 
-                charFoodID = strFoodstring.ElementAt(Start)
-                strFoodID += charFoodID
+                MessageBox.Show("You have not clicked on any food item yet")
 
-            Next
+            Else
 
-            Dim dlgResponse As DialogResult
+                strFoodstring = lstFoodname.Items(intIndex).ToString
 
-            dlgResponse = MessageBox.Show("You are going to delete " + strFoodID + " , Confirm to delete?", "Item Deletion", MessageBoxButtons.OKCancel)
+                strFoodID = (strFoodstring.Substring(0, strFoodstring.IndexOf(","))).Trim()
 
-            If (dlgResponse = DialogResult.OK) Then
+                Dim dlgResponse As DialogResult
 
-                If (Openconnection() = True) Then
+                dlgResponse = MessageBox.Show("You are going to delete " + strFoodstring + " , Confirm to delete?", "Item Deletion", MessageBoxButtons.OKCancel)
 
-                    Dim cmd As SqlCommand = con.CreateCommand()
-                    cmd.CommandType = CommandType.Text
-                    cmd.CommandText = "Delete from Menu Where ItemID = @FoodID"
+                If (dlgResponse = DialogResult.OK) Then
 
-                    Using da As New SqlDataAdapter(cmd)
+                    If (Openconnection() = True) Then
 
-                        cmd.Parameters.Clear()
-                        cmd.Parameters.AddWithValue("@FoodID", strFoodID)
-                        cmd.ExecuteNonQuery()
+                        Dim cmd As SqlCommand = con.CreateCommand()
+                        cmd.CommandType = CommandType.Text
+                        cmd.CommandText = "Delete from Menu Where ItemID = @FoodID"
 
-                    End Using
+                        Using da As New SqlDataAdapter(cmd)
 
-                    Closeconnection()
+                            cmd.Parameters.Clear()
+                            cmd.Parameters.AddWithValue("@FoodID", strFoodID)
+                            cmd.ExecuteNonQuery()
 
-                    Keeplog("Delete", strFoodID)
+                        End Using
 
-                    If blnSearchmode = True Then
+                        File.Delete(strImageLocation)
 
-                        Refreshaftersearchdelete(strStoresearch2)
+                        Closeconnection()
+
+                        Keeplog("Delete", strFoodID)
+
+                        If blnSearchmode = True Then
+
+                            Refreshaftersearchdelete(strStoresearch2)
+
+                        Else
+
+                            btnLoad_Click(sender, e)
+
+                        End If
 
                     Else
 
-                        btnLoad_Click(sender, e)
+                        MessageBox.Show("Error connecting to database")
+                        Closeconnection()
 
                     End If
-
-                Else
-
-                    MessageBox.Show("Error connecting to database")
-                    Closeconnection()
-
                 End If
-
-
             End If
-
 
         Catch ex As Exception
 
@@ -443,6 +451,7 @@ Public Class frmFoodmanagement
         Finally
 
             picBox.Image = Nothing
+            strImageLocation = ""
 
         End Try
 
@@ -501,6 +510,12 @@ Public Class frmFoodmanagement
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
 
         'strSearchtext = txtSearch.Text
+
+    End Sub
+
+    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+
+        Me.Close()
 
     End Sub
 

@@ -44,6 +44,7 @@ Partial Class frmFoodmanagement
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.btnLoad = New System.Windows.Forms.Button()
         Me.err = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.btnExit = New System.Windows.Forms.Button()
         CType(Me.picBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpList.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -199,12 +200,13 @@ Partial Class frmFoodmanagement
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.btnExit)
         Me.GroupBox2.Controls.Add(Me.btnDelete)
         Me.GroupBox2.Controls.Add(Me.btnClear)
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(899, 284)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(408, 94)
+        Me.GroupBox2.Size = New System.Drawing.Size(408, 169)
         Me.GroupBox2.TabIndex = 7
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Controls"
@@ -222,7 +224,7 @@ Partial Class frmFoodmanagement
         'btnClear
         '
         Me.btnClear.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClear.Location = New System.Drawing.Point(43, 22)
+        Me.btnClear.Location = New System.Drawing.Point(50, 22)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(133, 58)
         Me.btnClear.TabIndex = 7
@@ -260,6 +262,16 @@ Partial Class frmFoodmanagement
         '
         Me.err.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.err.ContainerControl = Me
+        '
+        'btnExit
+        '
+        Me.btnExit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnExit.Location = New System.Drawing.Point(238, 95)
+        Me.btnExit.Name = "btnExit"
+        Me.btnExit.Size = New System.Drawing.Size(133, 58)
+        Me.btnExit.TabIndex = 9
+        Me.btnExit.Text = "&Exit"
+        Me.btnExit.UseVisualStyleBackColor = True
         '
         'frmFoodmanagement
         '
@@ -311,4 +323,5 @@ Partial Class frmFoodmanagement
     Friend WithEvents lstFoodname As ListBox
     Friend WithEvents picAvailability As PictureBox
     Friend WithEvents err As ErrorProvider
+    Friend WithEvents btnExit As Button
 End Class

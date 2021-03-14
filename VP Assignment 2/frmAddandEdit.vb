@@ -1,11 +1,12 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
 Public Class frmAddandEdit
 
     'Private con As New SqlConnection
     Private sqlquery As String
     Private ds As DataSet = New DataSet()
     Private da As SqlDataAdapter
-    Private strImagelocation As String = ""
+    Private strImagelocation As String = "", strFileName As String = ""
 
     Private Sub frmAddandEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -23,6 +24,8 @@ Public Class frmAddandEdit
 
                 strImagelocation = dlgPicture.FileName
 
+                strFileName = Path.GetFileName(strImagelocation)
+
                 picBox.ImageLocation = strImagelocation
 
             End If
@@ -32,6 +35,7 @@ Public Class frmAddandEdit
             MessageBox.Show("Error uploading picture")
             picBox.Image = Nothing
             strImagelocation = ""
+            strFileName = ""
 
         End Try
 
@@ -51,19 +55,27 @@ Public Class frmAddandEdit
     Private Sub Clearall()
 
         txtFoodName.Clear()
-        radMaincourse.Checked = True
         mskPrice.Clear()
-        radAvailable.Checked = True
         picBox.Image = Nothing
         strImagelocation = ""
         txtFoodName.Select()
+        radAppetizer.Checked = False
+        radAvailable.Checked = False
+        radBeverage.Checked = False
+        radDessert.Checked = False
+        radDrink.Checked = False
+        radMaincourse.Checked = False
+        radUnavailable.Checked = False
+
 
     End Sub
 
     Private Sub btnClearpic_Click(sender As Object, e As EventArgs) Handles btnClearpic.Click
 
         strImagelocation = ""
+        strFileName = ""
         picBox.Image = Nothing
+
 
     End Sub
 
@@ -121,7 +133,20 @@ Public Class frmAddandEdit
 
             End Using
 
-            strFoodID = strFood.Substring(0, 2) + ((intTotalFoodIDs + 1).ToString)
+            Select Case strFood
+                Case "Appetizers"
+                    strFood = "A"
+                Case "Beverage"
+                    strFood = "B"
+                Case "Drinks"
+                    strFood = "D"
+                Case "Desserts"
+                    strFood = "S"
+                Case "Main Meal"
+                    strFood = "M"
+            End Select
+
+            strFoodID = strFood + ((intTotalFoodIDs + 1).ToString)
 
         Catch ex As Exception
 
@@ -137,9 +162,36 @@ Public Class frmAddandEdit
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
 
         Try
-            If (txtFoodName.Text = "" Or mskPrice.Text = "") Then
 
-                MessageBox.Show("Please enter food name and food price", "Error Message", MessageBoxButtons.OK)
+            Dim intErrorCount As Integer = 0
+            Dim strErrorMessage As String = ""
+
+            If (picBox.Image Is Nothing) Then
+                intErrorCount += 1
+                strErrorMessage += "Empty Picture" + vbCrLf
+            End If
+
+            If (txtFoodName.Text = "" Or mskPrice.Text = "") Then
+                intErrorCount += 1
+                strErrorMessage += "Empty Food Name or Price" + vbCrLf
+            End If
+
+            If (radAvailable.Checked = False And radUnavailable.Checked = False) Then
+                intErrorCount += 1
+                strErrorMessage += "Availability is not selected" + vbCrLf
+            End If
+
+            If (radAppetizer.Checked = False And radBeverage.Checked = False And radDessert.Checked = False And
+                radDrink.Checked = False And
+                radMaincourse.Checked = False
+                ) Then
+                intErrorCount += 1
+                strErrorMessage += "Food Category is not selected" + vbCrLf
+            End If
+
+            If (intErrorCount > 0) Then
+
+                MessageBox.Show("You have the following errors: " + vbCrLf + strErrorMessage, "Error Message", MessageBoxButtons.OK)
 
             Else
 
@@ -150,13 +202,26 @@ Public Class frmAddandEdit
                     Dim strFoodCategory As String = GetFoodCategory()
                     Dim strPrice As String = ""
                     Dim strAvailability As String = ""
-                    Dim strFilepath As String = ""
+                    Dim strSavePictureLocation As String = ""
 
                     If (radAvailable.Checked = True) Then
                         strAvailability = "Available"
                     Else
                         strAvailability = "Unavailable"
                     End If
+
+                    Select Case strFoodCategory
+                        Case "Appetizers"
+                            strSavePictureLocation = "\Pictures\Appetizers\"
+                        Case "Beverage"
+                            strSavePictureLocation = "\Pictures\Beverages\"
+                        Case "Drinks"
+                            strSavePictureLocation = "\Pictures\Drinks\"
+                        Case "Desserts"
+                            strSavePictureLocation = "\Pictures\Desserts\"
+                        Case "Main Meal"
+                            strSavePictureLocation = "\Pictures\Main courses\"
+                    End Select
 
                     cmd.CommandType = CommandType.Text
                     cmd.CommandText = "Insert into Menu (ItemId, ItemName, ItemPrice, ItemCategory, Status, Filepath) values (@FoodID,@FoodName,@FoodPrice,@FoodCategory,@Status,@Filepath)"
@@ -166,21 +231,25 @@ Public Class frmAddandEdit
                     cmd.Parameters.AddWithValue("@FoodPrice", mskPrice.Text)
                     cmd.Parameters.AddWithValue("@FoodCategory", strFoodCategory)
                     cmd.Parameters.AddWithValue("@Status", strAvailability)
-                    cmd.Parameters.AddWithValue("@Filepath", strImagelocation)
-
+                    cmd.Parameters.AddWithValue("@Filepath", strSavePictureLocation + strFileName)
                     cmd.ExecuteNonQuery()
+
+                    picBox.Image.Save(System.IO.Path.GetDirectoryName(Application.ExecutablePath).Replace("bin\Debug", strSavePictureLocation + strFileName))
 
                     MessageBox.Show("Added successfully", "Insertion Status")
 
                 End If
             End If
+
         Catch ex As Exception
 
-            MessageBox.Show("Error adding into database1")
+            MessageBox.Show("Error adding into database")
 
         Finally
 
+            Clearall()
             Closeconnection()
+
 
         End Try
 
@@ -205,6 +274,12 @@ Public Class frmAddandEdit
         '    err.SetError(txtFoodName, "")
 
         'End If
+
+    End Sub
+
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+
+        Clearall()
 
     End Sub
 End Class
