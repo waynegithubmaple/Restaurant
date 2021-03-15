@@ -228,8 +228,6 @@ Public Class frmPayment
                         intErrorCount += 1
                         strErrorMsg += "The value entered is insufficient" + vbCrLf +
                                        "You will need to add another: RM " + dblLackedAmount.ToString()
-                        txtPayment.Text = ""
-                        txtPayment.Focus()
                     End If
 
                 ElseIf (Convert.ToDouble(txtPayment.Text.Trim()) < 0) Then
@@ -247,6 +245,8 @@ Public Class frmPayment
 
         If (intErrorCount > 0) Then
             MessageBox.Show(strErrorMsg, "Error Message")
+            txtPayment.Text = ""
+            txtPayment.Focus()
         End If
 
         Return intErrorCount
