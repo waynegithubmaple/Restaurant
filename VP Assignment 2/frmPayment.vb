@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports NUnit.Framework
 
 
 Public Class frmPayment
@@ -152,68 +153,96 @@ Public Class frmPayment
                 txtPayment.Text = ""
                 txtPayment.Focus()
             Else
-                Dim dblAmount As Double = Convert.ToDouble(txtPayment.Text)
+                Try
+                    If (Openconnection() = True) Then
 
-                If (dblAmount = 0) Then
-                    MessageBox.Show("The value can not be 0")
-                    txtPayment.Text = ""
-                    txtPayment.Focus()
-                ElseIf (dblAmount < dblTotalPrice) Then
-                    Dim dblLackedAmount As Double = dblTotalPrice - dblAmount
-                    MessageBox.Show("The value entered is insufficient" + vbCrLf +
-                                    "You will need to add another: RM " + dblLackedAmount.ToString)
-                    txtPayment.Text = ""
-                    txtPayment.Focus()
-                Else
-                    Try
-                        If (Openconnection() = True) Then
+                        Dim cmd As SqlCommand = con.CreateCommand()
+                        cmd.CommandType = CommandType.Text
+                        cmd.CommandText = "Update Orders Set OrderStatus = @OrderStatus Where OrderNo = @OrderNo"
+                        Using da As New SqlDataAdapter(cmd)
+                            cmd.Parameters.AddWithValue("@OrderStatus", "Paid")
+                            cmd.Parameters.AddWithValue("@OrderNo", Integer.Parse(strOrderNumber))
+                            cmd.ExecuteNonQuery()
+                        End Using
 
-                            Dim cmd As SqlCommand = con.CreateCommand()
-                            cmd.CommandType = CommandType.Text
-                            cmd.CommandText = "Update Orders Set OrderStatus = @OrderStatus Where OrderNo = @OrderNo"
-                            Using da As New SqlDataAdapter(cmd)
-                                cmd.Parameters.AddWithValue("@OrderStatus", "Paid")
-                                cmd.Parameters.AddWithValue("@OrderNo", Integer.Parse(strOrderNumber))
-                                cmd.ExecuteNonQuery()
-                            End Using
-
-                            Dim dblChange As Double = dblAmount - dblTotalPrice
-
-                            MessageBox.Show("Paid Successfully" + vbCrLf + "Balance to customer: RM " +
+                        Dim dblAmount As Double = Convert.ToDouble(txtPayment.Text)
+                        Dim dblChange As Double = dblAmount - dblTotalPrice
+                        MessageBox.Show("Paid Successfully" + vbCrLf + "Balance to customer: RM " +
                                             dblChange.ToString(), "Payment Status")
-
-                        End If
-                    Catch ex As Exception
-
-                    Finally
-                        Closeconnection()
-                        clearAll()
-                    End Try
-                End If
-            End if
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show("Error updating orders")
+                Finally
+                    Closeconnection()
+                    clearAll()
+                End Try
+            End If
         End If
 
     End Sub
+
+    'Public Function testcheckErrors(ByRef strInput As String, ByRef dblTotalDue As Double) As String
+
+    '    Dim dblInput As Double = 0.0
+    '    Dim strError As String = ""
+
+    '    If (String.IsNullOrWhiteSpace(strInput)) Then
+    '        strError = "Empty"
+    '    Else
+    '        Try
+    '            If (Convert.ToDouble(strInput) > 0) Then
+    '                If (Convert.ToDouble(strInput) < dblTotalDue) Then
+    '                    strError = "Insufficient"
+    '                Else
+    '                    strError = "Paid"
+    '                End If
+    '            ElseIf (Convert.ToDouble(strInput) < 0) Then
+    '                strError = "Negative"
+    '            Else
+    '                strError = "Zero"
+    '            End If
+    '        Catch ex As Exception
+    '            strError = "Characters"
+    '        End Try
+    '    End If
+
+    '    Return strError
+    'End Function
+
+
 
     Private Function checkErrors() As Integer
 
         Dim intErrorCount As Integer = 0
         Dim strErrorMsg As String = "You have the following errors: " + vbCrLf
 
-
         If (String.IsNullOrWhiteSpace(txtPayment.Text.Trim())) Then
             intErrorCount += 1
             strErrorMsg += intErrorCount.ToString() + ". Nothing is entered" + vbCrLf
         Else
             Try
-                If (Integer.Parse(txtPayment.Text.Trim()) = 0) Then
+                If (Convert.ToDouble(txtPayment.Text.Trim()) > 0) Then
+                    If (Convert.ToDouble(txtPayment.Text.Trim()) < dblTotalPrice) Then
+                        Dim dblAmount As Double = Convert.ToDouble(txtPayment.Text)
+                        Dim dblLackedAmount As Double = dblTotalPrice - dblAmount
+                        intErrorCount += 1
+                        strErrorMsg += "The value entered is insufficient" + vbCrLf +
+                                       "You will need to add another: RM " + dblLackedAmount.ToString()
+                        txtPayment.Text = ""
+                        txtPayment.Focus()
+                    End If
 
+                ElseIf (Convert.ToDouble(txtPayment.Text.Trim()) < 0) Then
+                        intErrorCount += 1
+                        strErrorMsg += intErrorCount.ToString() + ". Cannot enter negative value" + vbCrLf
+                    Else
+                        intErrorCount += 1
+                    strErrorMsg += intErrorCount.ToString() + ". Cannot enter 0" + vbCrLf
                 End If
             Catch ex As Exception
                 intErrorCount += 1
                 strErrorMsg += intErrorCount.ToString() + ". Cannot enter any characters" + vbCrLf
             End Try
-
         End If
 
         If (intErrorCount > 0) Then
