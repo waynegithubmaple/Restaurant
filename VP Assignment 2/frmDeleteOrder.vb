@@ -45,23 +45,24 @@
         tableNo = Integer.Parse(cboTableNo.SelectedItem.ToString)
         result = MessageBox.Show("Are you sure you want to delete this order?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
-            Dim d = (From o In db.Orders, a In db.OrderItems Where o.OrderNo = a.OrderNo And a.tableNo = tableNo).ToArray
-            orderNo = d(0).a.OrderNo
-            For i = 0 To d.Length - 1
-                db.OrderItems.DeleteOnSubmit(d(i).a)
-                db.SubmitChanges()
-            Next
-            ' delete the order record from order table
-            Dim deleteOrder = (From i In db.Orders Where i.OrderNo = orderNo).FirstOrDefault
-            db.Orders.DeleteOnSubmit(deleteOrder)
-            db.SubmitChanges()
-            Dim t = (From u In db.Seats Where u.TableNo = tableNo).FirstOrDefault
-            'update the status of the table
-            t.TableStatus = "Available"
-            db.SubmitChanges()
-            MessageBox.Show("Order is deleted", "information", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            'hello
-            Me.Close()
+            deleteOrders(tableNo)
+            'Dim d = (From o In db.Orders, a In db.OrderItems Where o.OrderNo = a.OrderNo And a.tableNo = tableNo).ToArray
+            'orderNo = d(0).a.OrderNo
+            'For i = 0 To d.Length - 1
+            '    db.OrderItems.DeleteOnSubmit(d(i).a)
+            '    db.SubmitChanges()
+            'Next
+            '' delete the order record from order table
+            'Dim deleteOrder = (From i In db.Orders Where i.OrderNo = orderNo).FirstOrDefault
+            'db.Orders.DeleteOnSubmit(deleteOrder)
+            'db.SubmitChanges()
+            'Dim t = (From u In db.Seats Where u.TableNo = tableNo).FirstOrDefault
+            ''update the status of the table
+            't.TableStatus = "Available"
+            'db.SubmitChanges()
+            'MessageBox.Show("Order is deleted", "information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ''hello
+            'Me.Close()
 
 
 
@@ -72,4 +73,25 @@
 
 
     End Sub
+
+    Public Function deleteOrders(tableNo As Integer) As Integer
+        Dim d = (From o In db.Orders, a In db.OrderItems Where o.OrderNo = a.OrderNo And a.tableNo = tableNo).ToArray
+        orderNo = d(0).a.OrderNo
+        For i = 0 To d.Length - 1
+            db.OrderItems.DeleteOnSubmit(d(i).a)
+            db.SubmitChanges()
+        Next
+        ' delete the order record from order table
+        Dim deleteOrder = (From i In db.Orders Where i.OrderNo = orderNo).FirstOrDefault
+        db.Orders.DeleteOnSubmit(deleteOrder)
+        db.SubmitChanges()
+        Dim t = (From u In db.Seats Where u.TableNo = tableNo).FirstOrDefault
+        'update the status of the table
+        t.TableStatus = "Available"
+        db.SubmitChanges()
+        MessageBox.Show("Order is deleted", "information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'hello
+        Return orderNo
+        Me.Close()
+    End Function
 End Class
